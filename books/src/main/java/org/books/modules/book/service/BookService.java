@@ -24,5 +24,7 @@ public interface BookService {
 
 	Page<Book> find(Pageable pageable);
 
+	Book save(Book book);
+
 
 }

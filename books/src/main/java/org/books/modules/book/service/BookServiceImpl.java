@@ -37,4 +37,12 @@ class BookServiceImpl implements BookService {
 		return bookRepository.findAll(pageable);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.books.modules.book.service.BookService#save(org.books.modules.book.entity.Book)
+	 */
+	@Override
+	public Book save(Book book) {
+		return bookRepository.save(book);
+	}
+
 }

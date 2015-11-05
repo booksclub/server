@@ -16,6 +16,8 @@
 
 package org.books.modules.book.web;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.books.modules.book.entity.Book;
 import org.books.modules.book.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,13 +31,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/book")  
 public class BookController {
 
-	@Autowired
+	@Autowired	
 	private BookService bookService;
 
 	@RequestMapping("/books")
 	@ResponseBody
 	public Page<Book>  getBooks(Pageable page) {
 		return bookService.find(page);
+	}
+	
+	@RequestMapping("/add")
+	@ResponseBody
+	public Book  saveBooks(HttpServletRequest request) {
+		String bookname = request.getParameter("bookname");
+		Book  book = new Book();
+		book.setName(bookname);
+		bookService.save(book);
+		return book;
 	}
 
 }
